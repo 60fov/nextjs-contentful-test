@@ -1,43 +1,22 @@
-import Container from '../components/container'
-import MoreStories from '../components/more-stories'
-import HeroPost from '../components/hero-post'
-import Intro from '../components/intro'
-import Layout from '../components/layout'
-import { getAllPostsForHome } from '../lib/api'
-import Head from 'next/head'
-import { CMS_NAME } from '../lib/constants'
+import Logo from "../components/Logo"
+import EntryList from "../components/EntryList"
 
-export default function Index({ preview, allPosts }) {
-  const heroPost = allPosts[0]
-  const morePosts = allPosts.slice(1)
-  return (
-    <>
-      <Layout preview={preview}>
-        <Head>
-          <title>Next.js Blog Example with {CMS_NAME}</title>
-        </Head>
-        <Container>
-          <Intro />
-          {heroPost && (
-            <HeroPost
-              title={heroPost.title}
-              coverImage={heroPost.coverImage}
-              date={heroPost.date}
-              author={heroPost.author}
-              slug={heroPost.slug}
-              excerpt={heroPost.excerpt}
-            />
-          )}
-          {morePosts.length > 0 && <MoreStories posts={morePosts} />}
-        </Container>
-      </Layout>
-    </>
-  )
+import { fetchEntries, fetchBlogPostNames } from "../lib/api"
+
+export default function Home({entries}) {
+    return (
+        <main className="m-4">
+            <Logo></Logo>
+            <EntryList entries={entries}></EntryList>
+        </main>
+    )
 }
 
-export async function getStaticProps({ preview = false }) {
-  const allPosts = (await getAllPostsForHome(preview)) ?? []
-  return {
-    props: { preview, allPosts },
-  }
+export async function getStaticProps(context) {
+    const entries = await fetchEntries();
+    return {
+        props: {
+            entries
+        }
+    }
 }
