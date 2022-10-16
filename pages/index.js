@@ -3,12 +3,14 @@ import EntryList from "../components/EntryList"
 
 import { fetchEntries, fetchBlogPostNames } from "../lib/api"
 
-export default function Home({entries}) {
+export default function Home({ entries }) {
     return (
-        <main className="m-4">
+        <>
             <Logo></Logo>
-            <EntryList entries={entries}></EntryList>
-        </main>
+            <main className="">
+                <EntryList entries={entries}></EntryList>
+            </main>
+        </>
     )
 }
 
