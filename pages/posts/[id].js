@@ -9,7 +9,7 @@ export default function Post({ title, creation, body }) {
         <>
             <Logo></Logo>
             <article
-                className={"w-1/2 mx-auto mb-32"}>
+                className={"w-5/6 mx-auto mb-32 max-w-xl"}>
                 <h1 className="text-6xl">{title}</h1>
                 <p>{creation}</p>
                 {documentToReactComponents(body.json)}
