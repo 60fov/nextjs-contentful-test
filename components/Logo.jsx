@@ -10,7 +10,7 @@ export default function Logo() {
         className={"w-16 m-4 cursor-pointer"}>
             <Image 
             className={"object-contain invert dark:invert-0"} 
-            src={JDS_WHITE} 
+            src={JDS_WHITE}
             alt="j$ logo"/>
         </div>
         </Link>

@@ -1,4 +1,5 @@
 import Logo from "../../components/Logo"
+import PostTime from "../../components/PostTime"
 
 import { fetchBlogPostNames, fetchBlogPostByTitle } from "../../lib/api"
 import { documentToReactComponents } from "@contentful/rich-text-react-renderer"
@@ -10,8 +11,12 @@ export default function Post({ title, creation, body }) {
             <Logo></Logo>
             <article
                 className={"w-5/6 mx-auto mb-32 max-w-xl"}>
-                <h1 className="text-6xl">{title}</h1>
-                <p>{creation}</p>
+                <div 
+                className="w-full flex items-end justify-between mb-12">
+                    <h1 className="text-7xl mr-10">{title}</h1>
+                    <PostTime creation={creation}/>
+                </div>
+                
                 {documentToReactComponents(body.json)}
             </article>
         </>
